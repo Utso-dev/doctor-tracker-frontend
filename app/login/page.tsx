@@ -69,10 +69,7 @@ export default function LoginPage() {
     }
   };
 
-  const fillDemoAdmin = () => {
-    setValue("email", "admin@doctortracker.com", { shouldValidate: true });
-    setValue("password", "admin123", { shouldValidate: true });
-  };
+
 
   return (
     <div className="min-h-screen bg-bgColor flex items-center justify-center p-4">
@@ -132,18 +129,6 @@ export default function LoginPage() {
               )}
             </button>
           </form>
-
-          {/* Quick Demo Fill Box */}
-          <div className="mt-6 pt-6 border-t border-borderColor">
-            <button
-              type="button"
-              onClick={fillDemoAdmin}
-              className="w-full py-2.5 px-3 rounded-xl border border-dashed border-borderColor hover:border-primaryColor hover:bg-bgColor text-xs font-medium text-descriptionColor hover:text-primaryColor transition-all flex items-center justify-center gap-2 cursor-pointer"
-            >
-              <CheckCircle2 className="w-4 h-4 text-greenColor" />
-              <span>Use Demo Admin Credentials</span>
-            </button>
-          </div>
 
           <div className="mt-6 text-center text-xs text-grayColor1">
             Don&apos;t have an account?{" "}
