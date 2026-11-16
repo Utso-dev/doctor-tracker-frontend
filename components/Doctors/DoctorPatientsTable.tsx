@@ -96,10 +96,9 @@ export default function DoctorPatientsTable({
       accessor: "condition",
       formatter: (val: string) => (
         <span
-          className={`inline-flex items-center px-2.5 py-1 rounded-lg text-sm font-semibold border ${
-            CONDITION_COLORS[val] ||
+          className={`inline-flex items-center px-2.5 py-1 rounded-lg text-sm font-semibold border ${CONDITION_COLORS[val] ||
             "bg-bgColor text-descriptionColor border-borderColor"
-          }`}
+            }`}
         >
           {val}
         </span>
@@ -122,10 +121,10 @@ export default function DoctorPatientsTable({
         <span className="text-sm text-grayColor1">
           {val
             ? new Date(val).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "short",
-                day: "numeric",
-              })
+              year: "numeric",
+              month: "short",
+              day: "numeric",
+            })
             : "—"}
         </span>
       ),
@@ -180,7 +179,7 @@ export default function DoctorPatientsTable({
                 placeholder="Search patient name, phone..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-48 sm:w-60 h-10 pl-9 pr-3 text-sm rounded-xl border border-borderColor text-headerColor outline-none focus:border-primaryColor bg-whiteColor placeholder:text-grayColor1/80 transition-colors"
+                className="w-48 sm:w-60 h-10 pl-9 pr-3 text-sm rounded-md border border-borderColor text-headerColor outline-none focus:border-primaryColor bg-whiteColor placeholder:text-grayColor1/80 transition-colors"
               />
             </div>
 
@@ -188,7 +187,7 @@ export default function DoctorPatientsTable({
             <button
               type="button"
               onClick={() => setIsAddPatientOpen(true)}
-              className="inline-flex items-center gap-1.5 px-3.5 h-10 rounded-xl bg-greenColor text-whiteColor text-sm font-semibold hover:opacity-90 transition-opacity cursor-pointer shadow-xs shrink-0"
+              className="inline-flex items-center gap-1.5 px-3.5 h-10 rounded-md bg-primaryColor text-whiteColor text-sm font-semibold hover:opacity-90 transition-opacity cursor-pointer shadow-xs shrink-0"
             >
               <Plus className="w-4 h-4" />
               <span>Add Patient</span>

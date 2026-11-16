@@ -18,10 +18,10 @@ export default function DoctorProfileHeader({
 
   const formattedJoinedDate = doctor.createdAt
     ? new Date(doctor.createdAt).toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "short",
-        day: "numeric",
-      })
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    })
     : "—";
 
   return (
@@ -78,7 +78,7 @@ export default function DoctorProfileHeader({
           <button
             type="button"
             onClick={() => setIsEditOpen(true)}
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-primaryColor text-whiteColor text-sm font-medium hover:opacity-95 shadow-md shadow-primaryColor/20 transition-all cursor-pointer"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-md bg-primaryColor text-whiteColor text-sm font-medium hover:opacity-95 shadow-md shadow-primaryColor/20 transition-all cursor-pointer"
           >
             <Edit2 className="w-4 h-4 text-whiteColor" />
             <span>Edit Profile</span>
