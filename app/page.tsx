@@ -25,7 +25,7 @@ export default function Home() {
           {/* Heading */}
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-headerColor tracking-tight leading-tight">
             Intelligent Healthcare Administration &{" "}
-            <span className="text-primaryColor underline decoration-secondaryColor decoration-wavy">
+            <span className="text-primaryColor  decoration-secondaryColor decoration-wavy">
               Patient Analytics
             </span>
           </h1>

@@ -5,7 +5,7 @@ import { Activity } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-primaryColor text-whiteColor px-4 border-t border-primaryColor/40">
+    <footer className="bg-primaryColor text-whiteColor py-6 px-4 border-t border-primaryColor/40">
       <div className="container mx-auto py-10">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
@@ -16,13 +16,13 @@ export default function Footer() {
               <h2 className="text-xl font-bold tracking-tight">
                 Doctor<span className="text-secondaryColor">Tracker</span>
               </h2>
-              <p className="text-xs text-whiteColor/80">
+              <p className="text-sm text-whiteColor/80">
                 Healthcare administration & patient monitoring platform
               </p>
             </div>
           </div>
 
-          <div className="flex items-center gap-6 text-xs text-whiteColor/80">
+          <div className="flex items-center gap-6 text-sm text-whiteColor/80">
             <Link href="/" className="hover:text-secondaryColor transition-colors">
               Home
             </Link>

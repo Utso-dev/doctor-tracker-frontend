@@ -41,7 +41,7 @@ export default function StatCards({
       {statCards.map((card, idx) => (
         <div
           key={idx}
-          className="p-4 rounded-2xl bg-whiteColor border border-borderColor/50 shadow-sm hover:shadow-lg transition-all duration-200 relative overflow-hidden group"
+          className="p-4 rounded-2xl bg-whiteColor border border-borderColor/90  hover:shadow-lg transition-all duration-200 relative overflow-hidden group"
         >
           <div className="flex items-center justify-between mb-3">
             <p className="md:text-base text-sm font-semibold text-descriptionColor uppercase tracking-wider">

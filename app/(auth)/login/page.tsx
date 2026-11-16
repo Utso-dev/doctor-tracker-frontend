@@ -6,21 +6,20 @@ import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { Activity, ArrowRight } from "lucide-react";
+import { Activity, ArrowRight, CheckCircle2 } from "lucide-react";
 import ReusableInput from "@/components/reusable/InputFiled/ReusableInput";
 import { CookieHelper } from "@/helper/cookie.helper";
 import { UserService } from "@/service/user/user.service";
 
 // Zod validation schema
-const registerSchema = z.object({
-  name: z.string().min(2, "Full name must be at least 2 characters"),
+const loginSchema = z.object({
   email: z.string().min(1, "Email is required").email("Please enter a valid email address"),
   password: z.string().min(6, "Password must be at least 6 characters"),
 });
 
-type RegisterFormValues = z.infer<typeof registerSchema>;
+type LoginFormValues = z.infer<typeof loginSchema>;
 
-export default function RegistrationPage() {
+export default function LoginPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [serverError, setServerError] = useState("");
@@ -28,24 +27,22 @@ export default function RegistrationPage() {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
-  } = useForm<RegisterFormValues>({
-    resolver: zodResolver(registerSchema),
+  } = useForm<LoginFormValues>({
+    resolver: zodResolver(loginSchema),
     defaultValues: {
-      name: "",
       email: "",
       password: "",
     },
   });
 
-  const onSubmit = async (values: RegisterFormValues) => {
+  const onSubmit = async (values: LoginFormValues) => {
     setServerError("");
     setLoading(true);
 
     try {
-      const res = await UserService.register({
-        name: values.name,
-        username: values.name,
+      const res = await UserService.login({
         email: values.email,
         password: values.password,
       });
@@ -59,18 +56,20 @@ export default function RegistrationPage() {
         }
         router.push("/dashboard");
       } else {
-        setServerError(data.message || "Registration failed. Please try again.");
+        setServerError(data.message || "Invalid credentials. Please try again.");
       }
     } catch (err: any) {
       setServerError(
         err.response?.data?.message ||
         err.message ||
-        "An unexpected error occurred during registration."
+        "An unexpected error occurred during login."
       );
     } finally {
       setLoading(false);
     }
   };
+
+
 
   return (
     <div className="min-h-screen bg-bgColor flex items-center justify-center p-4">
@@ -84,7 +83,7 @@ export default function RegistrationPage() {
             Doctor<span className="text-secondaryColor">Tracker</span>
           </h1>
           <p className="text-sm text-descriptionColor mt-1">
-            Create an administrator account
+            Sign in to access the secure administrative portal
           </p>
         </div>
 
@@ -98,15 +97,6 @@ export default function RegistrationPage() {
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <ReusableInput
-              label="Full Name"
-              required
-              type="text"
-              placeholder="Dr. Admin or Staff Name"
-              {...register("name")}
-              error={errors.name?.message}
-            />
-
-            <ReusableInput
               label="Email Address"
               required
               type="email"
@@ -119,7 +109,7 @@ export default function RegistrationPage() {
               label="Password"
               required
               type="password"
-              placeholder="•••••••• (min 6 characters)"
+              placeholder="••••••••"
               {...register("password")}
               error={errors.password?.message}
             />
@@ -127,26 +117,26 @@ export default function RegistrationPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3 px-4 rounded-xl bg-primaryColor text-whiteColor font-medium text-sm hover:opacity-95 active:scale-[0.99] transition-all flex items-center justify-center gap-2 shadow-md shadow-primaryColor/20 cursor-pointer disabled:opacity-50 mt-2"
+              className="w-full py-3.5 px-4 rounded-md bg-primaryColor text-whiteColor font-medium text-sm hover:opacity-95 active:scale-[0.99] transition-all flex items-center justify-center gap-2 shadow-md shadow-primaryColor/20 cursor-pointer disabled:opacity-50 mt-2"
             >
               {loading ? (
                 <div className="w-5 h-5 border-2 border-whiteColor border-t-transparent rounded-full animate-spin" />
               ) : (
                 <>
-                  <span>Create Account</span>
-                  <ArrowRight className="w-4 h-4 text-secondaryColor" />
+                  <span>Sign In</span>
+                  <ArrowRight className="w-4 h-4 text-white" />
                 </>
               )}
             </button>
           </form>
 
           <div className="mt-6 text-center text-xs text-grayColor1">
-            Already have an account?{" "}
+            Don&apos;t have an account?{" "}
             <Link
-              href="/login"
+              href="/registration"
               className="text-primaryColor font-semibold hover:underline"
             >
-              Sign In
+              Sign Up
             </Link>
           </div>
         </div>
